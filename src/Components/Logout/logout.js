@@ -7,7 +7,7 @@ const Logout = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('creds')
-        navigate('/login')
+        navigate('/')
  }
 
   return (

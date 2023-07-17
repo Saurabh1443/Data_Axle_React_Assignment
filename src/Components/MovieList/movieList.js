@@ -14,7 +14,7 @@ const MovieList = () => {
         movieCharacterData = await movieCharacterData.json()
         const filteredData = movieCharacterData?.results?.filter(vv => { return vv?.name?.toLowerCase().includes(`${characterName?.toLowerCase()}`)})
             setMovieCharacterList(filteredData)
-        console.log(filteredData)
+       
     }
     
 
@@ -28,7 +28,7 @@ const MovieList = () => {
           <Typography variant="h4">All Characters</Typography>
           <Box sx={{mt:1,display:'flex',justifyContent:"center",alignContent:'center',gap:1}}>
           <input className='input' type="text"  value = {characterName} placeholder='search character name' onChange={e=>setCharacterName(e.target.value)} style={{ width: "27vw", height: "5vh",border:"none",outline:"none",paddingRight:5 }}></input>
-          <Button  variant='outlined' sx={{backgroundColor:"Black"}}  >Search Character</Button>
+          <Button disabled={true} variant='outlined' sx={{backgroundColor:"Black"}}  >Search Character</Button>
           </Box>
           </Box>
           <Grid container spacing={3} sx={{mt:1, backgroundImage:" linear-gradient(100deg,red,yellow,cyan,green,blue);"}}>
