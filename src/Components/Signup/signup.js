@@ -6,39 +6,40 @@ import "react-toastify/dist/ReactToastify.css";
 import { creds } from "../../credentials";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const user = creds?.find((vv) => vv?.email === email);
-    if (!user) {
-      toast.error("User does not exist ", {
+    if (user) {
+      toast.error(`User with email: ${email} already exist in the app`, {
         position: toast.POSITION.TOP_RIGHT,
       });
-    } else if (user?.password != password) {
-      toast.error("Password does not match ", {
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast.error("Password and Confirm Password are not same", {
         position: toast.POSITION.TOP_RIGHT,
       });
+      return;
     } else {
       localStorage.setItem("creds", email);
+      creds.push({ 'email': email, 'password': password });
       navigate("/");
     }
   };
   return (
     <Box
       style={{
-        backgroundImage: 'url("https://wallpapercave.com/wp/wp2383941.jpg")',
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        height: "100vh",
-        opacity: 0.7,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        marginTop: "7%",
       }}
     >
       <Box
@@ -49,7 +50,7 @@ const Login = () => {
           borderRadius: "10px",
         }}
       >
-        <h3>Login to see your faviourite characters</h3>
+        <h3>Signup to see your faviourite characters</h3>
 
         <form onSubmit={handleSubmit} autoComplete="off">
           <TextField
@@ -73,23 +74,32 @@ const Login = () => {
             fullWidth
             sx={{ mb: 2, backgroundColor: "aquamarine" }}
           />
+          <TextField
+            label="Confirm Password"
+            required
+            color="primary"
+            type="password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={confirmPassword}
+            fullWidth
+            sx={{ mb: 2, backgroundColor: "aquamarine" }}
+          />
           <Button
             sx={{ backgroundColor: "goldenrod" }}
             variant="outlined"
             color="primary"
             type="submit"
           >
-            Login
+            Signup
           </Button>
         </form>
-
-        <ToastContainer />
-        <a style={{ color: "red" }} href="/signup">
-          New user! Signup
+        <a style={{ color: "green" }} href="/login">
+          Already have an account! Login
         </a>
+        <ToastContainer />
       </Box>
     </Box>
   );
 };
 
-export default Login;
+export default Signup;
