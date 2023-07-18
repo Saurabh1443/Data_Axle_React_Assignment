@@ -7,8 +7,6 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  Input,
-  TextField,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";

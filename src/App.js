@@ -10,8 +10,8 @@ import Signup from "./Components/Signup/signup";
 function App() {
   return (
     <div className="App">
-      {window.location.pathname !== "/login" &&
-        window.location.pathname !== "/signup" && <Logout />}
+      {(window.location.pathname !== "/login" &&
+        window.location.pathname !== "/signup") && <Logout />}
       <Routes>
         <Route
           exact

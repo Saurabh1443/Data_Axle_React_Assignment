@@ -20,7 +20,7 @@ const Login = () => {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else if (user?.password != password) {
-      toast.error("Password does not match ", {
+      toast.error("Wrong password given ", {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else {
